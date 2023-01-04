@@ -32,7 +32,7 @@ export const PokemonCards = () => {
     }
 
     return (
-        <Container maxWidth="md">
+        <Container maxWidth="md" sx={{ my: 4}}>
             <Grid container spacing={4}>
                 {data && data.map(pokemonRef =>
                     <Grid item xs={4}>
