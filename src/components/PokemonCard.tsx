@@ -40,6 +40,15 @@ export const PokemonCard = ({pokemonRef}: Props) => {
     let sprite = ""
     if (data && data.sprites.other['official-artwork'].front_default) sprite = data.sprites.other['official-artwork'].front_default
 
+    function firstLetterToUpperCase(name: string) {
+        name = name.toLowerCase()
+        const firstLetter = name[0]
+        const upperCaseFirstLetter= firstLetter.toUpperCase()
+        return upperCaseFirstLetter + name.slice(1);
+    }
+
+
+
     return (
         <Card sx={{maxWidth: 345}}>
             <CardActionArea>
@@ -47,11 +56,11 @@ export const PokemonCard = ({pokemonRef}: Props) => {
                     component="img"
                     height="280"
                     image={sprite}
-                    alt={pokemonRef.name}
+                    alt={firstLetterToUpperCase(pokemonRef.name)}
                 />
                 <CardContent>
                     <Typography gutterBottom variant="h5" component="div">
-                        {pokemonRef.name}
+                        #{data?.id} - {firstLetterToUpperCase(pokemonRef.name)}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
                         Lizards are a widespread group of squamate reptiles, with over 6,000
