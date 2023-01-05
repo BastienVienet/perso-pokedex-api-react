@@ -43,11 +43,9 @@ export const PokemonCard = ({pokemonRef}: Props) => {
     function firstLetterToUpperCase(name: string) {
         name = name.toLowerCase()
         const firstLetter = name[0]
-        const upperCaseFirstLetter= firstLetter.toUpperCase()
+        const upperCaseFirstLetter = firstLetter.toUpperCase()
         return upperCaseFirstLetter + name.slice(1);
     }
-
-
 
     return (
         <Card sx={{maxWidth: 345}}>
@@ -63,8 +61,7 @@ export const PokemonCard = ({pokemonRef}: Props) => {
                         #{data?.id} - {firstLetterToUpperCase(pokemonRef.name)}
                     </Typography>
                     <Typography variant="body2" color="text.secondary">
-                        Lizards are a widespread group of squamate reptiles, with over 6,000
-                        species, ranging across all continents except Antarctica
+                        {firstLetterToUpperCase(pokemonRef.name)}
                     </Typography>
                 </CardContent>
             </CardActionArea>
