@@ -16,6 +16,7 @@ export const App = () => {
                 <NavBar/>
                 <Routes>
                     <Route path='/' element={<PokemonCards/>}/>
+                    <Route path='/pokemon/:pokemonName' element={<PokemonCards/>}/>
                     <Route path='*' element={<PageNotFound/>}/>
                 </Routes>
             </BrowserRouter>
