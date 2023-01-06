@@ -7,7 +7,7 @@ import * as React from "react";
 import {ApiPokemonDataResults, RestRef} from "../types";
 import {useQuery} from "react-query";
 import {Link} from "react-router-dom";
-import {firstLetterToUpperCase, addLeadingZeros} from "../utils";
+import {addLeadingZeros, firstLetterToUpperCase} from "../utils";
 import {pokemonService} from "../pokemonService";
 
 type Props = {
@@ -30,17 +30,17 @@ export const PokemonCard = ({pokemonRef}: Props) => {
             <Link to={`/pokemon/${pokemonRef.name}`} style={{textDecoration: "none", color: "black"}}>
                 <CardActionArea sx={{p: 2}}>
                     <CardMedia
-                        sx={{objectFit: "contain", height: "20vh"}}
+                        sx={{objectFit: "contain", height: "25vh"}}
                         component="img"
                         image={sprite}
                         alt={firstLetterToUpperCase(pokemonRef.name)}
                     />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
-                            {firstLetterToUpperCase(pokemonRef.name)}
-                        </Typography>
+                    <CardContent sx={{p: 0}}>
                         <Typography variant="body2" color="text.secondary">
                             #{data && addLeadingZeros(data.id)}
+                        </Typography>
+                        <Typography gutterBottom variant="h5" component="div">
+                            {firstLetterToUpperCase(pokemonRef.name)}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
