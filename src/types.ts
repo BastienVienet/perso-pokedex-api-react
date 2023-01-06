@@ -13,7 +13,7 @@ export type ApiResults = {
 export type ApiPokemonDataResults = {
     id: number,
     name: string,
-    type: RestRef[],
+    types: { type: RestRef }[],
     sprites: {
         other: {
             ['official-artwork']: {
@@ -21,4 +21,13 @@ export type ApiPokemonDataResults = {
             }
         }
     },
+}
+
+export type ApiPokemonTypeResults = {
+    damage_relations: {
+        double_damage_from: RestRef[],
+        double_damage_to: RestRef[],
+        half_damage_from: RestRef[],
+        half_damage_to: RestRef[],
+    }
 }
