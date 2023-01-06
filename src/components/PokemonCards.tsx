@@ -35,14 +35,14 @@ export const PokemonCards = () => {
     }
 
     return (
-        <Container maxWidth="md" sx={{my: 4}}>
+        <Container maxWidth="md" sx={{py: 4}}>
             <Grid container spacing={4}>
                 {data && data.map(pokemonRef =>
                     <Grid item xs={4} key={pokemonRef.name}>
                         <PokemonCard pokemonRef={pokemonRef}/>
                     </Grid>)}
             </Grid>
-            <Dialog open={isOpen} onClose={handleClose}>
+            <Dialog open={isOpen} onClose={handleClose} fullWidth={true} maxWidth={"sm"}>
                 {currentPokemon && <PokemonCardDetails pokemonRef={currentPokemon}/>}
             </Dialog>
         </Container>

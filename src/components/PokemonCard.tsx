@@ -27,20 +27,20 @@ export const PokemonCard = ({pokemonRef}: Props) => {
 
     return (
         <Card sx={{maxWidth: 345}}>
-            <Link to={`/pokemon/${pokemonRef.name}`}>
-                <CardActionArea>
+            <Link to={`/pokemon/${pokemonRef.name}`} style={{textDecoration: "none", color: "black"}}>
+                <CardActionArea sx={{p: 2}}>
                     <CardMedia
-                        sx={{objectFit: "contain", height: "15vh"}}
+                        sx={{objectFit: "contain", height: "20vh"}}
                         component="img"
                         image={sprite}
                         alt={firstLetterToUpperCase(pokemonRef.name)}
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            #{data && addLeadingZeros(data.id)} - {firstLetterToUpperCase(pokemonRef.name)}
+                            {firstLetterToUpperCase(pokemonRef.name)}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {firstLetterToUpperCase(pokemonRef.name)}
+                            #{data && addLeadingZeros(data.id)}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
