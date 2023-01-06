@@ -1,34 +1,37 @@
 import * as React from 'react';
-import {Container} from '@mui/material';
+import {useEffect, useState} from 'react';
+import {Container, Dialog} from '@mui/material';
 import Grid from '@mui/material/Grid';
-import axios from "axios";
 import {useQuery} from "react-query";
-import {ApiResults, RestRef} from "../types";
+import {RestRef} from "../types";
 import {PokemonCard} from "./PokemonCard";
+import {useNavigate, useParams} from "react-router-dom";
+import {PokemonCardDetails} from "./PokemonCardDetails";
+import {pokemonService} from "../pokemonService";
 
 export const PokemonCards = () => {
 
-    const fetchPokemons = async () => {
-        const query = await axios.get<ApiResults>('https://pokeapi.co/api/v2/pokemon?limit=9')
-        return query.data.results
-    }
+    const [isOpen, setIsOpen] = useState(false);
+    const navigate = useNavigate()
 
-    const {
-        isLoading,
-        isFetching,
-        isError,
-        error,
-        data
-    } = useQuery<RestRef[], { message: string }>('allKantoPokemons', fetchPokemons, {
+    const handleClose = () => {
+        setIsOpen(false);
+        navigate('/')
+    };
+
+    const {pokemonName} = useParams()
+    useEffect(() => {
+        pokemonName && setIsOpen(true);
+    }, [pokemonName]);
+
+
+    const {data} = useQuery<RestRef[]>('allKantoPokemons', pokemonService.fetchPokemons, {
         staleTime: Infinity
     })
 
-    if (isLoading || isFetching) {
-        return <h2>Loading...</h2>
-    }
-
-    if (isError) {
-        return <h2>{error.message}</h2>
+    let currentPokemon = undefined
+    if (pokemonName && data) {
+        currentPokemon = data.find(pkmn => pkmn.name === pokemonName)
     }
 
     return (
@@ -39,6 +42,9 @@ export const PokemonCards = () => {
                         <PokemonCard pokemonRef={pokemonRef}/>
                     </Grid>)}
             </Grid>
+            <Dialog open={isOpen} onClose={handleClose}>
+                {currentPokemon && <PokemonCardDetails pokemonRef={currentPokemon}/>}
+            </Dialog>
         </Container>
     )
 }
