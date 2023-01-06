@@ -9,7 +9,7 @@ import {useNavigate, useParams} from "react-router-dom";
 import {PokemonCardDetails} from "./PokemonCardDetails";
 import {pokemonService} from "../pokemonService";
 
-export const PokemonCards = () => {
+export const PokemonCards = ({filter}: {filter: string}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const navigate = useNavigate()
@@ -37,7 +37,7 @@ export const PokemonCards = () => {
     return (
         <Container maxWidth="md" sx={{py: 4}}>
             <Grid container spacing={4}>
-                {data && data.map(pokemonRef =>
+                {data && data.filter(pr => pr.name.includes(filter.toLowerCase())).map(pokemonRef =>
                     <Grid item xs={4} key={pokemonRef.name}>
                         <PokemonCard pokemonRef={pokemonRef}/>
                     </Grid>)}

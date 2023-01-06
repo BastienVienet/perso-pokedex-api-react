@@ -42,16 +42,16 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
             return [...accumulator, ...stringArray]
         },
         [])
-    const uniqWeakness = [...new Set(newArray)].join(", ");
+    const uniqWeakness = [...new Set(newArray)];
 
     let sprite = ""
     if (displayDetails && pokemonDetailsQuery.data.sprites.other['official-artwork'].front_default) {
         sprite = pokemonDetailsQuery.data.sprites.other['official-artwork'].front_default
     }
 
-    let type = ""
+    let type: string[] = []
     if (displayDetails && pokemonDetailsQuery.data.types.map(type => type.type.name)) {
-        type = pokemonDetailsQuery.data.types.map(type => type.type.name).join(", ")
+        type = pokemonDetailsQuery.data.types.map(type => type.type.name)
     }
 
 
@@ -64,10 +64,10 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
             </DialogTitle>
             <DialogContent dividers>
                 <Grid container spacing={2} p={2}>
-                    <Grid xs={6}>
+                    <Grid xs={6} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                         <Box
                             component="img"
-                            sx={{objectFit: "contain", height: "40vh"}}
+                            sx={{height: "40vh"}}
                             alt={`Image of the Pokemon ${pokemonName}`}
                             src={sprite}
                         />
@@ -76,13 +76,13 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
                         <Item sx={{m:2}}>
                             <Box sx={{p: 2}}>
                                 Type of {pokemonName}<br/>
-                                <Chip label={type}/>
+                                {type.map(u => <Chip label={u.toUpperCase()}></Chip>)}
                             </Box>
                         </Item>
                         <Item  sx={{m:2}}>
                             <Box sx={{p: 2}}>
                                 Weaknesses of {pokemonName}<br/>
-                                <Chip label={uniqWeakness}/>
+                                {uniqWeakness.map(u => <Chip label={u.toUpperCase()}></Chip>)}
                             </Box>
                         </Item>
                     </Grid>

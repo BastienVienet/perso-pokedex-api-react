@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import {QueryClient, QueryClientProvider} from "react-query";
 import {ReactQueryDevtools} from "react-query/devtools";
@@ -10,13 +10,26 @@ const queryClient = new QueryClient()
 
 export const App = () => {
 
+    const [filter, setFilter] = useState("")
+
     return (
         <QueryClientProvider client={queryClient}>
             <BrowserRouter>
-                <NavBar/>
+                <NavBar
+                    filter={filter}
+                    setFilter={setFilter}
+                />
                 <Routes>
-                    <Route path='/' element={<PokemonCards/>}/>
-                    <Route path='/pokemon/:pokemonName' element={<PokemonCards/>}/>
+                    <Route path='/' element={
+                        <PokemonCards
+                            filter={filter}
+                        />
+                    }/>
+                    <Route path='/pokemon/:pokemonName' element={
+                        <PokemonCards
+                            filter={filter}
+                        />
+                    }/>
                     <Route path='*' element={<PageNotFound/>}/>
                 </Routes>
             </BrowserRouter>
