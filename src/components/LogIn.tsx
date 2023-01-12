@@ -65,7 +65,7 @@ export const LogIn = ({setUser}: { setUser: (user: object) => void }) => {
                             alignItems: 'center',
                         }}
                     >
-                        <Avatar sx={{bgcolor: 'primary.main'}}>
+                        <Avatar sx={{mb: 2, bgcolor: 'primary.main'}}>
                             <LockOutlinedIcon/>
                         </Avatar>
                         <Typography component="h1" variant="h5">
