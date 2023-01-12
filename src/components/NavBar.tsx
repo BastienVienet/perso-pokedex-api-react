@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import {TextField} from "@mui/material";
 
-export const NavBar = ({filter, setFilter}: any) => {
+export const NavBar = ({setFilter}: any) => {
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilter(e.target.value);
