@@ -5,7 +5,7 @@ import {ApiPokemonDataResults, ApiPokemonTypeResults, ApiResults, RestRef} from 
 export const pokemonService = {
 
     fetchPokemons: async () => {
-        const pokemonListQuery = await axios.get<ApiResults>('https://pokeapi.co/api/v2/pokemon?limit=90')
+        const pokemonListQuery = await axios.get<ApiResults>('https://pokeapi.co/api/v2/pokemon?limit=151')
         return pokemonListQuery.data.results
     },
 
