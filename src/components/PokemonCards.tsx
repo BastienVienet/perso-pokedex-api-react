@@ -35,7 +35,7 @@ export const PokemonCards = ({filter}: {filter: string}) => {
     }
 
     return (
-        <Container maxWidth="md" sx={{py: 4}}>
+        <Container maxWidth="lg" sx={{py: 4, mt: '10vh'}}>
             <Grid container spacing={4}>
                 {data && data.filter(pr => pr.name.includes(filter.toLowerCase())).map(pokemonRef =>
                     <Grid item xs={4} key={pokemonRef.name}>

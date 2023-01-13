@@ -17,16 +17,17 @@ export const NavBar = ({setFilter, setUser}: any) => {
 
     return (
         <Box>
-            <AppBar position="static">
-                <Toolbar>
-                    <Box sx={{display: 'flex', alignItems: 'flex-end', flexGrow: 1, mb: 2}}>
-                        <SearchIcon sx={{color: 'action.active', mr: 1, my: 0.5}}/>
+            <AppBar position="fixed" sx={{px: 2, minHeight:  '10vh'}}>
+                <Toolbar sx={{display: 'flex', justifyContent: 'space-between', flexGrow: 1, pb: 2}}>
+                    <Box sx={{display: 'flex', alignItems: 'flex-end'}}>
+                        <SearchIcon sx={{color: 'action.active', mr: 1, my: 0.5 }}/>
                         <TextField
                             onChange={handleSearchChange}
                             label="Pokemon name"
                             variant="standard"/>
                     </Box>
                     <Button
+                        sx={{mt: 2}}
                         onClick={() => handleSignOut()}
                         color="inherit"
                     >
