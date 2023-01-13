@@ -27,8 +27,6 @@ export const App = () => {
         // eslint-disable-next-line
     }, [user])
 
-    console.log(isLogIn)
-
     return (
         <>
             <QueryClientProvider client={queryClient}>
