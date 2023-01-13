@@ -67,7 +67,7 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
                     <Grid xs={6} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                         <Box
                             component="img"
-                            sx={{height: "40vh"}}
+                            sx={{height: "25vh"}}
                             alt={`Image of the Pokemon ${pokemonName}`}
                             src={sprite}
                         />
