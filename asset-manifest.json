@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/perso-pokedex-api-react/static/css/main.e6c13ad2.css",
+    "main.js": "/perso-pokedex-api-react/static/js/main.0dcabb72.js",
+    "index.html": "/perso-pokedex-api-react/index.html",
+    "main.e6c13ad2.css.map": "/perso-pokedex-api-react/static/css/main.e6c13ad2.css.map",
+    "main.0dcabb72.js.map": "/perso-pokedex-api-react/static/js/main.0dcabb72.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.0dcabb72.js"
+  ]
+}
