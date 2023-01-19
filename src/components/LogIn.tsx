@@ -11,7 +11,11 @@ import {createTheme, ThemeProvider} from '@mui/material/styles';
 import jwtDecode from "jwt-decode";
 import {CredentialResponse} from "google-one-tap";
 
-export const LogIn = ({setUser}: { setUser: (user: object) => void }) => {
+type Props = {
+    setUser: (user: object) => void
+}
+
+export const LogIn = ({setUser}: Props) => {
 
     const signInDivRef = useRef<HTMLButtonElement | null>(null)
 

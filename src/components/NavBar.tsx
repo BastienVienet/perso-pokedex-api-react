@@ -6,7 +6,11 @@ import Toolbar from '@mui/material/Toolbar';
 import SearchIcon from '@mui/icons-material/Search';
 import {TextField} from "@mui/material";
 
-export const NavBar = ({setFilter, setUser}: any) => {
+type Props = {
+    setFilter: (filter: string) => void, setUser: (user: object) => void,
+}
+
+export const NavBar = ({setFilter, setUser}: Props) => {
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setFilter(e.target.value);
@@ -17,7 +21,7 @@ export const NavBar = ({setFilter, setUser}: any) => {
 
     return (
         <Box>
-            <AppBar position="fixed" sx={{px: 2, minHeight:  '10vh'}}>
+            <AppBar position="fixed" sx={{px: 2, minHeight: '10vh'}}>
                 <Toolbar sx={{display: 'flex', justifyContent: 'space-between', flexGrow: 1, pb: 2}}>
                     <Box sx={{display: 'flex', alignItems: 'flex-end'}}>
                         <SearchIcon sx={{color: 'action.active', mr: 1, my: 0.5 }}/>
@@ -36,6 +40,5 @@ export const NavBar = ({setFilter, setUser}: any) => {
                 </Toolbar>
             </AppBar>
         </Box>
-    )
-        ;
+    );
 }
