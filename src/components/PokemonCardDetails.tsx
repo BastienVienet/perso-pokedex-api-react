@@ -61,7 +61,7 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
 
     return (
         <>
-            <div style={{backgroundColor: theme === Theme.Light ? '#DCDCDC' : '#313131'}}>
+            <div style={{backgroundColor: theme === Theme.Light ? 'default' : '#313131'}}>
                 <DialogTitle id="customized-dialog-title" sx={{color: theme === Theme.Light ? 'default' : 'white'}}>
                     {displayDetails ? '#' + addLeadingZeros(pokemonDetailsQuery.data.id) + ' - ' + pokemonName : ''}
                 </DialogTitle>
@@ -76,13 +76,13 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
                             />
                         </Grid>
                         <Grid xs={6} sx={{display: "flex", flexDirection: "column"}}>
-                            <Item sx={{m: 2, backgroundColor: theme === Theme.Light ? '#DCDCDC' : 'grey'}}>
+                            <Item sx={{m: 2, backgroundColor: theme === Theme.Light ? 'default ' : 'grey'}}>
                                 <Box sx={{p: 2, color: theme === Theme.Light ? 'default' : 'white'}}>
                                     Type of {pokemonName}<br/>
                                     {type.map(u => <Chip label={u.toUpperCase()} sx={{color: theme === Theme.Light ? 'default' : 'white'}}></Chip>)}
                                 </Box>
                             </Item>
-                            <Item sx={{m: 2, backgroundColor: theme === Theme.Light ? '#DCDCDC' : 'grey'}}>
+                            <Item sx={{m: 2, backgroundColor: theme === Theme.Light ? 'default' : 'grey'}}>
                                 <Box sx={{p: 2, color: theme === Theme.Light ? 'default' : 'white'}}>
                                     Weaknesses of {pokemonName}<br/>
                                     {uniqWeakness.map(u => <Chip label={u.toUpperCase()} sx={{color: theme === Theme.Light ? 'default' : 'white'}}></Chip>)}
