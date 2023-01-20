@@ -2,7 +2,6 @@ import * as React from 'react';
 import {useEffect, useRef} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
-import Link from '@mui/material/Link';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
@@ -45,11 +44,8 @@ export const LogIn = ({setUser}: Props) => {
         return (
             <Typography variant="body2" color="text.secondary" align="center" {...props}>
                 {'Copyright © '}
-                <Link color="inherit" href="http://localhost:3000">
-                    Pokedex - Vienet Bastien
-                </Link>{' '}
-                {new Date().getFullYear()}
-                {'.'}
+                {'Pokedex - Vienet Bastien '}
+                {new Date().getFullYear()}{'.'}
             </Typography>
         );
     }
