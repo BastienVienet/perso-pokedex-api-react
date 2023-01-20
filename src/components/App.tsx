@@ -6,6 +6,7 @@ import {NavBar} from "./NavBar"
 import {PokemonCards} from "./PokemonCards";
 import {PageNotFound} from "./PageNotFound";
 import {LogIn} from "./LogIn";
+import {ThemeProvider} from "../context/ThemeContext";
 
 const queryClient = new QueryClient()
 
@@ -21,7 +22,7 @@ export const App = () => {
         const isLogIn = Object.keys(user).length !== 0
         if (!isLogIn) {
             navigate('/login')
-        } else if (location.pathname === '/login'){
+        } else if (location.pathname === '/login') {
             navigate('/')
         }
         // eslint-disable-next-line
@@ -29,35 +30,37 @@ export const App = () => {
 
     return (
         <>
-            <QueryClientProvider client={queryClient}>
-                {isLogIn &&
-                    <NavBar
-                        setFilter={setFilter}
-                        setUser={setUser}
-                    />
-                }
-                <Routes>
-                    <Route path='/' element={
-                        <PokemonCards
-                            filter={filter}
-                        />
-                    }/>
-                    <Route path='/login' element={
-                        <LogIn
+            <ThemeProvider>
+                <QueryClientProvider client={queryClient}>
+                    {isLogIn &&
+                        <NavBar
+                            setFilter={setFilter}
                             setUser={setUser}
                         />
-                    }/>
-                    <Route path='/pokemon/:pokemonName' element={
-                        <PokemonCards
-                            filter={filter}
-                        />
-                    }/>
-                    <Route path='*' element={
-                        <PageNotFound/>
-                    }/>
-                </Routes>
-                <ReactQueryDevtools initialIsOpen={false} position='bottom-right'></ReactQueryDevtools>
-            </QueryClientProvider>
+                    }
+                    <Routes>
+                        <Route path='/' element={
+                            <PokemonCards
+                                filter={filter}
+                            />
+                        }/>
+                        <Route path='/login' element={
+                            <LogIn
+                                setUser={setUser}
+                            />
+                        }/>
+                        <Route path='/pokemon/:pokemonName' element={
+                            <PokemonCards
+                                filter={filter}
+                            />
+                        }/>
+                        <Route path='*' element={
+                            <PageNotFound/>
+                        }/>
+                    </Routes>
+                    <ReactQueryDevtools initialIsOpen={false} position='bottom-right'></ReactQueryDevtools>
+                </QueryClientProvider>
+            </ThemeProvider>
         </>
     );
 }

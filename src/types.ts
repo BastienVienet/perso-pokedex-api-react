@@ -1,7 +1,3 @@
-declare global {
-    const google: typeof import('google-one-tap');
-}
-
 export type RestRef = {
     name: string,
     url: string,
@@ -34,4 +30,9 @@ export type ApiPokemonTypeResults = {
         half_damage_from: RestRef[],
         half_damage_to: RestRef[],
     }
+}
+
+export enum Theme {
+    Light = 'LIGHT',
+    Dark = 'DARK',
 }
