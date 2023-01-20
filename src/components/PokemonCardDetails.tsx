@@ -65,7 +65,7 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
                 <DialogTitle id="customized-dialog-title" sx={{color: theme === Theme.Light ? 'default' : 'white'}}>
                     {displayDetails ? '#' + addLeadingZeros(pokemonDetailsQuery.data.id) + ' - ' + pokemonName : ''}
                 </DialogTitle>
-                <DialogContent dividers sx={{borderColor: theme === Theme.Light ? 'default' : 'white'}}>
+                <DialogContent dividers sx={{borderColor: theme === Theme.Light ? 'default' : 'white', borderBottom: 'hidden'}}>
                     <Grid container spacing={2} p={2}>
                         <Grid xs={6} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                             <Box
