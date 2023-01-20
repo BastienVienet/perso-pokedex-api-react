@@ -1,11 +1,12 @@
 import {useQuery} from "react-query";
-import {RestRef} from "../types";
+import {RestRef, Theme} from "../types";
 import {pokemonService} from "../pokemonService";
-import React from "react";
+import React, {useContext} from "react";
 import {Chip, DialogContent, DialogTitle, Paper, styled} from "@mui/material";
 import {addLeadingZeros, firstLetterToUpperCase} from "../utils";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
+import {ThemeContext} from "../context/ThemeContext";
 
 export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
 
@@ -54,40 +55,43 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
         type = pokemonDetailsQuery.data.types.map(type => type.type.name)
     }
 
-
     const pokemonName = displayDetails && firstLetterToUpperCase(pokemonDetailsQuery.data.name)
+
+    const {themeState: [theme]} = useContext(ThemeContext)
 
     return (
         <>
-            <DialogTitle id="customized-dialog-title">
-                {displayDetails ? '#' + addLeadingZeros(pokemonDetailsQuery.data.id) + ' - ' + pokemonName : ''}
-            </DialogTitle>
-            <DialogContent dividers>
-                <Grid container spacing={2} p={2}>
-                    <Grid xs={6} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
-                        <Box
-                            component="img"
-                            sx={{height: "25vh"}}
-                            alt={`Image of the Pokemon ${pokemonName}`}
-                            src={sprite}
-                        />
+            <div style={{backgroundColor: theme === Theme.Light ? '#DCDCDC' : '#313131'}}>
+                <DialogTitle id="customized-dialog-title" sx={{color: theme === Theme.Light ? 'default' : 'white'}}>
+                    {displayDetails ? '#' + addLeadingZeros(pokemonDetailsQuery.data.id) + ' - ' + pokemonName : ''}
+                </DialogTitle>
+                <DialogContent dividers sx={{borderColor: theme === Theme.Light ? 'default' : 'white'}}>
+                    <Grid container spacing={2} p={2}>
+                        <Grid xs={6} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                            <Box
+                                component="img"
+                                sx={{height: "25vh"}}
+                                alt={`Image of the Pokemon ${pokemonName}`}
+                                src={sprite}
+                            />
+                        </Grid>
+                        <Grid xs={6} sx={{display: "flex", flexDirection: "column"}}>
+                            <Item sx={{m: 2, backgroundColor: theme === Theme.Light ? '#DCDCDC' : 'grey'}}>
+                                <Box sx={{p: 2, color: theme === Theme.Light ? 'default' : 'white'}}>
+                                    Type of {pokemonName}<br/>
+                                    {type.map(u => <Chip label={u.toUpperCase()} sx={{color: theme === Theme.Light ? 'default' : 'white'}}></Chip>)}
+                                </Box>
+                            </Item>
+                            <Item sx={{m: 2, backgroundColor: theme === Theme.Light ? '#DCDCDC' : 'grey'}}>
+                                <Box sx={{p: 2, color: theme === Theme.Light ? 'default' : 'white'}}>
+                                    Weaknesses of {pokemonName}<br/>
+                                    {uniqWeakness.map(u => <Chip label={u.toUpperCase()} sx={{color: theme === Theme.Light ? 'default' : 'white'}}></Chip>)}
+                                </Box>
+                            </Item>
+                        </Grid>
                     </Grid>
-                    <Grid xs={6} sx={{display: "flex", flexDirection: "column"}}>
-                        <Item sx={{m:2}}>
-                            <Box sx={{p: 2}}>
-                                Type of {pokemonName}<br/>
-                                {type.map(u => <Chip label={u.toUpperCase()}></Chip>)}
-                            </Box>
-                        </Item>
-                        <Item  sx={{m:2}}>
-                            <Box sx={{p: 2}}>
-                                Weaknesses of {pokemonName}<br/>
-                                {uniqWeakness.map(u => <Chip label={u.toUpperCase()}></Chip>)}
-                            </Box>
-                        </Item>
-                    </Grid>
-                </Grid>
-            </DialogContent>
+                </DialogContent>
+            </div>
         </>
     )
 }

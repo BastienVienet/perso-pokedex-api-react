@@ -1,14 +1,12 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {Route, Routes, useLocation, useNavigate} from "react-router-dom";
-import {QueryClient, QueryClientProvider} from "react-query";
 import {ReactQueryDevtools} from "react-query/devtools";
 import {NavBar} from "./NavBar"
 import {PokemonCards} from "./PokemonCards";
 import {PageNotFound} from "./PageNotFound";
 import {LogIn} from "./LogIn";
-import {ThemeProvider} from "../context/ThemeContext";
-
-const queryClient = new QueryClient()
+import {ThemeContext} from "../context/ThemeContext";
+import {Theme} from "../types";
 
 export const App = () => {
 
@@ -17,6 +15,7 @@ export const App = () => {
     const isLogIn = Object.keys(user).length !== 0
     const navigate = useNavigate()
     const location = useLocation()
+    const {themeState: [theme]} = useContext(ThemeContext)
 
     useEffect(() => {
         const isLogIn = Object.keys(user).length !== 0
@@ -30,37 +29,36 @@ export const App = () => {
 
     return (
         <>
-            <ThemeProvider>
-                <QueryClientProvider client={queryClient}>
-                    {isLogIn &&
-                        <NavBar
-                            setFilter={setFilter}
+            <div style={{backgroundColor: theme === Theme.Light ? '#DCDCDC' : '#313131', minHeight: '100vh'}}>
+                {isLogIn &&
+                    <NavBar
+                        setFilter={setFilter}
+                        setUser={setUser}
+                    />
+                }
+                <Routes>
+                    <Route path='/' element={
+                        <PokemonCards
+                            filter={filter}
+                        />
+                    }/>
+                    <Route path='/login' element={
+                        <LogIn
                             setUser={setUser}
                         />
-                    }
-                    <Routes>
-                        <Route path='/' element={
-                            <PokemonCards
-                                filter={filter}
-                            />
-                        }/>
-                        <Route path='/login' element={
-                            <LogIn
-                                setUser={setUser}
-                            />
-                        }/>
-                        <Route path='/pokemon/:pokemonName' element={
-                            <PokemonCards
-                                filter={filter}
-                            />
-                        }/>
-                        <Route path='*' element={
-                            <PageNotFound/>
-                        }/>
-                    </Routes>
-                    <ReactQueryDevtools initialIsOpen={false} position='bottom-right'></ReactQueryDevtools>
-                </QueryClientProvider>
-            </ThemeProvider>
+                    }/>
+                    <Route path='/pokemon/:pokemonName' element={
+                        <PokemonCards
+                            filter={filter}
+                        />
+                    }/>
+                    <Route path='*' element={
+                        <PageNotFound/>
+                    }/>
+                </Routes>
+                <ReactQueryDevtools initialIsOpen={false} position='bottom-right'></ReactQueryDevtools>
+            </div>
         </>
-    );
+    )
+        ;
 }
