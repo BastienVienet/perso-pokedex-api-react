@@ -1,4 +1,5 @@
 .idea/
+.storybook/
 
 # dependencies
 /node_modules
