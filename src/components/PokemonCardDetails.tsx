@@ -67,7 +67,7 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
                 </DialogTitle>
                 <DialogContent dividers sx={{borderColor: theme === Theme.Light ? 'default' : 'white', borderBottom: 'hidden'}}>
                     <Grid container spacing={2} p={2}>
-                        <Grid xs={6} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
+                        <Grid item xs={6} sx={{display: "flex", justifyContent: "center", alignItems: "center"}}>
                             <Box
                                 component="img"
                                 sx={{height: "25vh"}}
@@ -75,17 +75,17 @@ export const PokemonCardDetails = ({pokemonRef}: { pokemonRef: RestRef }) => {
                                 src={sprite}
                             />
                         </Grid>
-                        <Grid xs={6} sx={{display: "flex", flexDirection: "column"}}>
+                        <Grid item xs={6} sx={{display: "flex", flexDirection: "column"}}>
                             <Item sx={{m: 2, backgroundColor: theme === Theme.Light ? 'default ' : 'grey'}}>
                                 <Box sx={{p: 2, color: theme === Theme.Light ? 'default' : 'white'}}>
                                     Type of {pokemonName}<br/>
-                                    {type.map(u => <Chip label={u.toUpperCase()} sx={{color: theme === Theme.Light ? 'default' : 'white'}}></Chip>)}
+                                    {type.map(u => <Chip label={u.toUpperCase()} key={u} sx={{color: theme === Theme.Light ? 'default' : 'white'}}></Chip>)}
                                 </Box>
                             </Item>
                             <Item sx={{m: 2, backgroundColor: theme === Theme.Light ? 'default' : 'grey'}}>
                                 <Box sx={{p: 2, color: theme === Theme.Light ? 'default' : 'white'}}>
                                     Weaknesses of {pokemonName}<br/>
-                                    {uniqWeakness.map(u => <Chip label={u.toUpperCase()} sx={{color: theme === Theme.Light ? 'default' : 'white'}}></Chip>)}
+                                    {uniqWeakness.map(u => <Chip label={u.toUpperCase()} key={u} sx={{color: theme === Theme.Light ? 'default' : 'white'}}></Chip>)}
                                 </Box>
                             </Item>
                         </Grid>
